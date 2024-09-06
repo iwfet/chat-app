@@ -14,7 +14,7 @@ import (
 var (
  ctx = context.Background()
  rdb = redis.NewClient(&redis.Options{
-  Addr: "172.17.0.3:6379",
+  Addr: "172.28.1.2:6379",
  })
  upgrader = websocket.Upgrader{
   CheckOrigin: func(r *http.Request) bool {
