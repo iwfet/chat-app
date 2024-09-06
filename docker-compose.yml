@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    container_name: my-redis
+    ports:
+      - "6379:6379" # Exponha a porta 6379 do contêiner na mesma porta no host
+    networks:
+      - my-network
+
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-go-app
+    ports:
+      - "3000:3000" # Exponha a porta 3000 do contêiner na mesma porta no host
+    depends_on:
+      - redis
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
